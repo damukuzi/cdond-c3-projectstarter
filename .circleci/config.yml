@@ -217,7 +217,6 @@ jobs:
       - run:
           name: Run migrations
           command: |
-            apk add --update aws-cli
             cd backend
             npm install
             npm audit fix
@@ -230,8 +229,6 @@ jobs:
               then
                 curl https://kvdb.io/SXrPEDaQRWmDSVhm8rFhVy/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
-      # Here's where you will add some code to rollback on failure
-      - destroy_environment
 
   deploy-frontend:
     docker:
