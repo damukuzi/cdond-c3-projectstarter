@@ -200,7 +200,6 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            apk add --update aws-cli
       - run:
           name: Configure server
           command: |
@@ -208,8 +207,6 @@ jobs:
             ls
             ansible-playbook -i inventory.txt configure-server.yml
             no_output_timeout: 15m
-      # Here's where you will add some code to rollback on failure
-      - destroy_environment
 
   run-migrations:
     docker:
