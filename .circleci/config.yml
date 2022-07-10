@@ -235,12 +235,7 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            apk add --update python3 py3-pip
-            apk add --update ansible
-            apk add --update npm
+      - run: sudo apt install python3 py3-pip ansible npm unzip -y
 
       - run:
           name: Get backend url
@@ -271,20 +266,12 @@ jobs:
       # Checkout code from git
       - checkout
       # Add ssh keys with fingerprint
-      - run: sudo apt install ansible unzip -y
       - add_ssh_keys:
           fingerprints: ["a9:60:4f:17:a5:1f:6c:49:dd:bf:02:28:ae:b0:78:79"]
       # attach workspace
       - attach_workspace:
           at: ~/
-      - run:
-          name: Install dependencies
-          command: |
-            # your code here
-            apk add --update python3 py3-pip
-            apk add --update ansible
-            apk add --update npm
-            pk add --update aws-cli
+      - run: sudo apt install python3 py3-pip ansible npm unzip -y
       - run:
           name: Deploy backend
           command: |
