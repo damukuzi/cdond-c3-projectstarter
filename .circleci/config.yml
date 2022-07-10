@@ -173,19 +173,13 @@ jobs:
             aws ec2 describe-instances \
               --filters "Name=tag:project,Values=udapeople" \
               --query "Reservations[*].Instances[*].PublicIpAddress" \
-              --output text >> inventory
+              --output text >> .circleci/ansible/inventory.txt
+            cat .circleci/ansible/inventory.txt
+            pwd
       - persist_to_workspace:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-      - attach_workspace:
-          at: ~/
-          
-      - run:
-          name: Configure server
-          command: |
-            cd .circleci/ansible 
-            echo inventory.txt
       # Here's where you will add some code to rollback on failure
       - destroy_environment
 
