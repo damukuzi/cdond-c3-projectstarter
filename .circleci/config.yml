@@ -235,9 +235,6 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - command: |
-        curl -sL https://rpm.nodesource.com/setup_14.x | bash -
-        yum -y install tar gzip nodejs
       - run:
           name: Install dependencies
           command: |
