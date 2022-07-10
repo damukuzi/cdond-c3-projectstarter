@@ -235,7 +235,9 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - run: yum install -y tar gzip
+      - command: |
+        curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+        yum -y install tar gzip nodejs
       - run:
           name: Install dependencies
           command: |
@@ -267,17 +269,17 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: python:3.7-alpine3.11
+      - image: circleci/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
       # Add ssh keys with fingerprint
+      - run: sudo apt install ansible unzip -y
       - add_ssh_keys:
           fingerprints: ["a9:60:4f:17:a5:1f:6c:49:dd:bf:02:28:ae:b0:78:79"]
       # attach workspace
       - attach_workspace:
           at: ~/
-      - run: yum install -y tar gzip
       - run:
           name: Install dependencies
           command: |
