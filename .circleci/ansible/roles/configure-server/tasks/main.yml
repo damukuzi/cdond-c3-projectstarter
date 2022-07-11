@@ -11,6 +11,12 @@
     state: latest
     update_cache: yes
 
+- name: "Extract artifact"
+  become: true
+  unarchive:
+  src: files/artifact.tar.gz
+  dest: /home/ubuntu
+
 - name: "install pm2"
   become: true
   npm:
