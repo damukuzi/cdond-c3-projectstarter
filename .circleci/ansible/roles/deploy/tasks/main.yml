@@ -27,4 +27,5 @@
 
 - name: Executing node
   shell: |
+    cd /home/ubuntu
     pm2 start npm -- start
