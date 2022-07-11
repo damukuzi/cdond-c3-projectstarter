@@ -235,8 +235,8 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - run: yum install -y python3 ansible unzip curl
-      - run: curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+      - run: yum install -y python3 ansible unzip curl apt
+      - run: curl -sL https://rpm.nodesource.com/setup_10.x | bash -
       - run: yum install -y nodejs
       - run:
           name: Get backend url
@@ -289,8 +289,6 @@ jobs:
             cat inventory.txt
             export ANSIBLE_HOST_KEY_CHECKING=False
             ansible-playbook -i inventory.txt deploy-backend.yml
-      # Here's where you will add some code to rollback on failure
-      - destroy_environment
 
 workflows:
   default:
