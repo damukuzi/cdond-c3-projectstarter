@@ -235,7 +235,7 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - run: yum install -y python3 ansible unzip curl apt
+      - run: yum install -y python3 ansible unzip curl apt tar
       - run: curl -sL https://rpm.nodesource.com/setup_10.x | bash -
       - run: yum install -y nodejs
       - run:
