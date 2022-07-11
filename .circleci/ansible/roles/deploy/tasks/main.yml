@@ -19,10 +19,6 @@
     production: yes
     state: present
 
-- name: Executing nodest
-  shell: |
-    pm2 stop default
-
 - name: Executing node
   shell: |
     pm2 start npm -- start
