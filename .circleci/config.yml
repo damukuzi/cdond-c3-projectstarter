@@ -235,9 +235,9 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - run: sudo apt install python3 ansible unzip -y
-      - run: curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-      - run: sudo apt install npm -y
+      - run: yum install -y python3 ansible unzip
+      - run: curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+      - run: yum install -y nodejs
       - run:
           name: Get backend url
           command: |
