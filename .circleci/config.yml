@@ -235,7 +235,7 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - run: yum install -y python3 ansible unzip curl apt tar
+      - run: yum install -y python3 ansible unzip curl apt tar gzip
       - run: curl -sL https://rpm.nodesource.com/setup_10.x | bash -
       - run: yum install -y nodejs
       - run:
@@ -254,7 +254,7 @@ jobs:
             cd frontend
             npm install
             npm run build
-            tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
+            ls -lrt
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure
       - destroy_environment
