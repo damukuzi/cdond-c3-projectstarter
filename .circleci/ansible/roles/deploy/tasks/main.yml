@@ -19,7 +19,7 @@
     production: yes
     state: present
 
-- name: "Extract artifact"
+- name: "Extract"
   become: true
   unarchive:
     src: files/artifact.tar.gz
