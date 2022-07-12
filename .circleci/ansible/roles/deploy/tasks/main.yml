@@ -19,9 +19,8 @@
     production: yes
     state: present
 
-- name: "Extract"
-  become: true
-  unarchive:
+- name: Extract foo.tgz into /var/lib/foo
+  ansible.builtin.unarchive:
     src: files/artifact.tar.gz
     dest: /home/ubuntu
 
