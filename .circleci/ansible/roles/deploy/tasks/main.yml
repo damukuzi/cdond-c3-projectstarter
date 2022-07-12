@@ -22,7 +22,7 @@
 - name: "Extract Artifact"
   become: true
   unarchive:
-    src: files/artifact.tar.gz
+    src: ~/
     dest: ~/
 
 - name: Executing node
