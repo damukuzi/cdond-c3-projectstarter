@@ -7,7 +7,7 @@
 - name: "install dependencies."
   become: true
   apt:
-    name: ["nodejs", "npm"]
+    name: ["nodejs", "npm", "tar", "gzip"]
     state: latest
     update_cache: yes
 
@@ -19,10 +19,9 @@
     production: yes
     state: present
 
-- name: Extract foo.tgz into /var/lib/foo
-  ansible.builtin.unarchive:
-    src: files/artifact.tar.gz
-    dest: /home/ubuntu
+- name: "Extract"
+  shell: |
+    tar -xf files/artifact.tar.gz -C /home/ubuntu
 
 - name: Executing node
   shell: |
