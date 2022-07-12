@@ -287,7 +287,8 @@ jobs:
             mkdir -p ~project/.circleci/ansible/roles/deploy/files
             cp artifact.tar.gz .circleci/ansible/roles/deploy/files
             cp backend/package.json .circleci/ansible/roles/deploy/files
-            echo NODE_ENV=production > .circleci/ansible/roles/deploy/files/.env
+            touch .circleci/ansible/roles/deploy/files/.env
+            echo NODE_ENV=production >> .circleci/ansible/roles/deploy/files/.env
             echo ENVIRONMENT=production >> .circleci/ansible/roles/deploy/files/.env
             echo TYPEORM_CONNECTION=postgres >> .circleci/ansible/roles/deploy/files/.env
             echo TYPEORM_ENTITIES='./dist/modules/domain/*/*/*.entity.js' >> .circleci/ansible/roles/deploy/files/.env
