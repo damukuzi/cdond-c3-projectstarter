@@ -286,6 +286,16 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             mkdir -p ~project/.circleci/ansible/roles/deploy/files
             cp artifact.tar.gz .circleci/ansible/roles/deploy/files
+            cp backend/package.json .circleci/ansible/roles/deploy/files/
+            echo NODE_ENV=production > .circleci/ansible/roles/deploy/files/.env
+            echo ENVIRONMENT=production >> .circleci/ansible/roles/deploy/files/.env
+            echo TYPEORM_CONNECTION=postgres >> .circleci/ansible/roles/deploy/files/.env
+            echo TYPEORM_ENTITIES='./dist/modules/domain/*/*/*.entity.js' >> .circleci/ansible/roles/deploy/files/.env
+            echo TYPEORM_HOST=${TYPEORM_HOST} >> .circleci/ansible/roles/deploy/files/.env
+            echo TYPEORM_PORT=${TYPEORM_PORT} >> .circleci/ansible/roles/deploy/files/.env
+            echo TYPEORM_USERNAME=${TYPEORM_USERNAME} >> .circleci/ansible/roles/deploy/files/.env
+            echo TYPEORM_PASSWORD=${TYPEORM_PASSWORD} >> .circleci/ansible/roles/deploy/files/.env
+            echo TYPEORM_DATABASE=${TYPEORM_DATABASE} >> .circleci/ansible/roles/deploy/files/.env
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
