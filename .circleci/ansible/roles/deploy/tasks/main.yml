@@ -22,19 +22,9 @@
 - name: "Extract Artifact"
   become: true
   unarchive:
-    src: artifact.tar.gz
-    dest: /home/ubuntu
+    src: ~/
+    dest: ~/
     remote_src: no
-
-- name: Copy .env
-  copy:
-    src: .env
-    dest: /home/ubuntu/
-
-- name: Copy package
-  copy:
-    src: package.json
-    dest: /home/ubuntu/
 
 - name: Executing node
   shell: |

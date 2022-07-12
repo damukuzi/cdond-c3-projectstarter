@@ -286,7 +286,6 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             mkdir -p ~project/.circleci/ansible/roles/deploy/files
             cp artifact.tar.gz .circleci/ansible/roles/deploy/files
-            cp backend/package.json .circleci/ansible/roles/deploy/files
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
