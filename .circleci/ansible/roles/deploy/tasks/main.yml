@@ -22,9 +22,8 @@
 - name: "Extract Artifact"
   become: true
   unarchive:
-    src: /root/project/artifact.tar.gz
+    src: backend.zip
     dest: ~/
-    remote_src: no
 
 - name: Executing node
   shell: |
