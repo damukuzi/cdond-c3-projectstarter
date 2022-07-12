@@ -23,7 +23,7 @@
   become: true
   unarchive:
     src: files/artifact.tar.gz
-    dest: ~/
+    dest: /home/ubuntu
 
 - name: Executing node
   shell: |
