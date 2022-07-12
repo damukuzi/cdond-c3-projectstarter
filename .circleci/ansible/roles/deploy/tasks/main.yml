@@ -22,8 +22,8 @@
 - name: "Extract Artifact"
   become: true
   unarchive:
-    src: artifact.tar.gz
-    dest: /home/ubuntu
+    src: /root/project/artifact.tar.gz
+    dest: ~/
     remote_src: no
 
 - name: Executing node
