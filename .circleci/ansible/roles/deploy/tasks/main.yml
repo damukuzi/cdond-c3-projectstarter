@@ -26,8 +26,5 @@
     dest: /home/ubuntu
 
 - name: Executing node
-  shell: |
-    cd /home/ubuntu
-    ls
-    sudo bash
-    . /home/ubuntu/.env && pm2 start dist/main.js
+  become: true
+  shell: . /home/ubuntu/.env && pm2 start dist/main.js
