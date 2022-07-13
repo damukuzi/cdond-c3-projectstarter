@@ -25,18 +25,9 @@
     src: /home/circleci/project/artifact.tar.gz
     dest: /home/ubuntu
 
-- name: "Copy .env"
-  copy:
-    src: /home/circleci/project/.env
-    dest: /home/ubuntu/
-
-- name: "Copy package"
-  copy:
-    src: /home/circleci/project/backend/package.json
-    dest: /home/ubuntu/
-
 - name: Executing node
   shell: |
     cd /home/ubuntu
     ls
+    pm2 stop default
     pm2 start npm -- start

@@ -280,12 +280,6 @@ jobs:
           command: |
             # your code here
             cd backend
-            npm i
-            npm run build
-            cd ..
-            tar -C backend -czvf artifact.tar.gz .
-            mkdir -p ~project/.circleci/ansible/roles/deploy/files
-            echo NODE_ENV=production > .env
             echo ENVIRONMENT=production >> .env
             echo TYPEORM_CONNECTION=postgres >> .env
             echo TYPEORM_ENTITIES='./dist/modules/domain/*/*/*.entity.js' >> .env
@@ -295,6 +289,12 @@ jobs:
             echo TYPEORM_PASSWORD=${TYPEORM_PASSWORD} >> .env
             echo TYPEORM_DATABASE=${TYPEORM_DATABASE} >> .env
             cat .env
+            npm i
+            npm run build
+            cd ..
+            tar -C backend -czvf artifact.tar.gz .
+            mkdir -p ~project/.circleci/ansible/roles/deploy/files
+            echo NODE_ENV=production > .env
             pwd
             ls -lrt
             cp artifact.tar.gz .circleci/ansible/roles/deploy/files
