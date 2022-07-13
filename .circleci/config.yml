@@ -194,7 +194,7 @@ jobs:
           paths:
             - project/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure
-      - destroy_environment
+      - destroy-environment
 
   configure-infrastructure:
     docker:
@@ -271,7 +271,7 @@ jobs:
             ls -lrt
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure
-      - destroy_environment
+      - destroy-environment
 
   deploy-backend:
     docker:
