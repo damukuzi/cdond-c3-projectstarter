@@ -329,6 +329,8 @@ jobs:
       - run:
           name: Backend smoke test.
           command: |
+            cat .circleci/ansible/inventory.txt
+            export BACKEND_IP=`sed -n 2p .circleci/ansible/inventory.txt`
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
