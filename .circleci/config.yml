@@ -415,7 +415,7 @@ jobs:
             echo Stack names: "${STACKS[@]}"
             for id in $STACKS
               do
-                  if [[ $id != *$CIRCLE_WORKFLOW_ID ]]  # If stack is not current deployment
+                  if [[ "${CIRCLE_WORKFLOW_ID:0:7}" =~ "${OldWorkflowID}" ]]  # If stack is not current deployment
                   then
                       if [[ $id == "udapeople-frontend-"* ]]  #empty the bucket first
                       then
