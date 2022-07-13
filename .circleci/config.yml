@@ -420,7 +420,7 @@ jobs:
                       if [[ $id == "udapeople-frontend-"* ]]  #empty the bucket first
                       then
                           echo "Deleting s3 bucket content for $id"
-                          aws s3 rm "s3://udapeople-${OldWorkflowID}"
+                          aws s3 rm "s3://${OldWorkflowID}"
                       fi
                       echo "Deleting $id"
                       aws cloudformation delete-stack --stack-name $id
