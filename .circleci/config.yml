@@ -25,8 +25,22 @@ commands:
           # ${CIRCLE_WORKFLOW_ID:0:5} takes the first 5 chars of the variable CIRCLE_CI_WORKFLOW_ID
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:7}
+            aws cloudformation delete-stack --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
+            aws s3 rm --recursive s3://udapeople-$CIRCLE_WORKFLOW_ID
+            aws cloudformation delete-stack --stack-name "udapeople-frontend-$CIRCLE_WORKFLOW_ID"
 
+  revert-migrations:
+    description: Revert the last migration.
+    steps:
+      - run:
+          name: Revert migrations
+          when: on_fail
+          command: |
+            if  https://kvdb.io/SXrPEDaQRWmDSVhm8rFhVy/migration_${CIRCLE_WORKFLOW_ID} | grep "1"
+            then
+              cd ~/project/backend
+              npm run migrations:revert
+            fi
 jobs:
   print_greetings:
     docker:
@@ -351,6 +365,8 @@ jobs:
               return 1
             fi
       # Here's where you will add some code to rollback on failure
+      - destroy-environment
+      - revert-migrations
 
 workflows:
   default:
