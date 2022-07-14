@@ -420,10 +420,10 @@ jobs:
                       if [[ $id == "udapeople-frontend-"* ]]  #empty the bucket first
                       then
                           echo "Deleting s3 bucket content for $id"
-                          # aws s3 rm s3://${OldWorkflowID} --recursive
+                          aws s3 rm s3://${OldWorkflowID} --recursive
                       fi
                       echo "Deleting $id"
-                      # aws cloudformation delete-stack --stack-name $id
+                      aws cloudformation delete-stack --stack-name $id
                   else
                       echo "Skipping $id"
                   fi
