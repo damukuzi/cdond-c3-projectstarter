@@ -412,15 +412,15 @@ jobs:
              --no-paginate --output text)
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
             --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
-            echo Stack names: "${STACKS[@]}"
             for id in $STACKS
               do
-                  if [[ $id != *$CIRCLE_WORKFLOW_ID  ]]  # If stack is not current deployment
+                  if [[ $id != udapeople-fronted-${CIRCLE_WORKFLOW_ID:0:7}  ]] || [[ $id != udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}  ]] # If stack is not current deployment
+                  echo " ---- delete confirmed ---------"
                   then
                       if [[ $id == "udapeople-frontend-"* ]]  #empty the bucket first
                       then
                           echo "Deleting s3 bucket content for $id"
-                          aws s3 rm "s3://${OldWorkflowID}"
+                          aws s3 rm s3://${OldWorkflowID} --recursive
                       fi
                       echo "Deleting $id"
                       aws cloudformation delete-stack --stack-name $id
