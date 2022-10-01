@@ -8,8 +8,6 @@ This project, proves mastery of the following objectives:
 - Utilizing a configuration management tool to accomplish deployment to cloud-based servers.
 - Surfacing critical server errors for diagnosis using centralized structured logging.
 
-![Diagram of CI/CD Pipeline we will be building.](udapeople.png)
-
 ### Built With
 
 - [Circle CI](www.circleci.com) - Cloud-based CI/CD service
