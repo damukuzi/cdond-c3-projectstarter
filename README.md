@@ -1,5 +1,5 @@
 
-## Give AN Application Auto-Deploy Superpowers
+## Giving an Application Auto-Deploy Superpowers
 
 This project, proves mastery of the following objectives:
 
